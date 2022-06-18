@@ -1,0 +1,7 @@
+.row{
+    flex: 1;
+    border: 0.5px solid black;
+}
+.row:active{
+    background-color: #64f4c4;
+}

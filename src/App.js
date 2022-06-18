@@ -1,7 +1,8 @@
+import Board from "./views/Board/Board";
+
 function App() {
   return (
-    <div>
-    </div>
+    <Board/>
   );
 }
 
