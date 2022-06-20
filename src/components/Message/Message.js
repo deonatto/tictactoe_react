@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import './Message.css';
 
 const Message = ({winner, result, restart}) => {
   return (
-    <div>
+    <div className='message-container'>
         <p>{winner}</p>
         <p>{result}</p>
         <button onClick={restart}>Restar Game</button>
