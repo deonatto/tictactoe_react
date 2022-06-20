@@ -14,6 +14,19 @@ const userSlice = createSlice({
             }
             state.users.push(user);
         },
+        addWin(state,action){
+            switch(action.payload){
+                case 'X':
+                    state.users[0].wins++;
+                    break;
+                case 'O':
+                    state.users[1].wins++;
+                    break;
+                default:
+                    break;
+            }
+
+        }
     }
 });
 
