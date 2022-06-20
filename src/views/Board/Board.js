@@ -2,13 +2,9 @@ import {useState, useEffect} from 'react';
 import Wrapper from '../../components/Wrapper/Wrapper';
 import Square from '../../components/Square/Square';
 import Message from '../../components/Message/Message';
-import {useSelector, useDispatch} from 'react-redux';
-import {userActions} from '../../redux/user'
 import './Board.css';
 
 const Board = () => {
-    const users = useSelector(state => state.user.users);
-    const dispatch = useDispatch();
     const [board, setBoard] = useState([
         {value:"", checked: false},
         {value:"", checked: false},

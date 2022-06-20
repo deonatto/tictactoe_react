@@ -4,7 +4,6 @@ const userSlice = createSlice({
     name: 'user',
     initialState: {
         users:[],
-        gameOn : false
     },
     reducers: {
         addPlayer(state, action){
