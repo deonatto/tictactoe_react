@@ -1,7 +1,6 @@
 import Board from "./views/Board/Board";
 import Login from "./views/Login/Login";
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {useSelector} from 'react-redux';
 
 function App() {
   return (
