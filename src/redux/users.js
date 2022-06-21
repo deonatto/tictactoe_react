@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-const userSlice = createSlice({
-    name: 'user',
+const usersSlice = createSlice({
+    name: 'users',
     initialState: {
         users:[],
     },
@@ -24,10 +24,12 @@ const userSlice = createSlice({
                 default:
                     break;
             }
-
+        },
+        endGame(state){
+            state.users = [];
         }
     }
 });
 
-export default userSlice.reducer;
-export const userActions = userSlice.actions;
+export default usersSlice.reducer;
+export const usersActions = usersSlice.actions;

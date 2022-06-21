@@ -39,4 +39,5 @@
     background-color: rgb(160, 238, 160);
     border: none;
     border-radius: 5px;
+    cursor: pointer;
 }

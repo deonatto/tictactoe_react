@@ -30,6 +30,7 @@
     height: 30px;
     outline: none;
     border: none;
+    cursor: pointer;
 }
 .restart-btn{
     margin-bottom: 10px;

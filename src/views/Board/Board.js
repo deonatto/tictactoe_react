@@ -5,19 +5,22 @@ import Message from '../../components/Message/Message';
 import './Board.css';
 
 const Board = () => {
+    //board state
     const [board, setBoard] = useState([
-        {value:"", checked: false},
-        {value:"", checked: false},
-        {value:"", checked: false},
-        {value:"", checked: false},
-        {value:"", checked: false},
-        {value:"", checked: false},
-        {value:"", checked: false},
-        {value:"", checked: false},
-        {value:"", checked: false}
+        {value:"",number:0,checked: false},
+        {value:"",number:1,checked: false},
+        {value:"",number:2,checked: false},
+        {value:"",number:3,checked: false},
+        {value:"",number:4,checked: false},
+        {value:"",number:5,checked: false},
+        {value:"",number:6,checked: false},
+        {value:"",number:7,checked: false},
+        {value:"",number:8,checked: false}
     ]);
+    //players icon
     const [player, setPlayer] = useState('O');
     const [result, setResult] = useState({winner: "none", state: "none"})
+
     //winning patterns
     const patterns = [
         [0,3,6],
@@ -30,7 +33,7 @@ const Board = () => {
         [2,4,6]
     ];
 
-    //call checkWinner function every time board is changed
+    //call checkWinner and changePlayer functions every time board is changed
     useEffect(()=>{
         checkWinner();
         changePlayer();
@@ -50,36 +53,38 @@ const Board = () => {
                 winner = true;
             }
         });
-        //count all square that don´t have empty string
-        board.forEach( item =>{
-            if(item.value !== ""){
-                count++
-            }
-        })
-        //check if it is a tie
-        if(count === 9){
-            if(!winner){
+        // if no winner checks if it is a tie
+        if(!winner){
+            //count all square that don´t have empty string
+            board.forEach( item =>{
+                if(item.value !== ""){
+                    count++
+                }
+            })
+            //check if it is a tie
+            if(count === 9){
                 setResult({winner:"none", state:"Tie"})
             }
         }
 
     }
-    //restart game
+    //restart game function
     const restarGame = () =>{
         setBoard([
-            {value:"", checked: false},
-            {value:"", checked: false},
-            {value:"", checked: false},
-            {value:"", checked: false},
-            {value:"", checked: false},
-            {value:"", checked: false},
-            {value:"", checked: false},
-            {value:"", checked: false},
-            {value:"", checked: false}
+            {value:"",number:0,checked: false},
+            {value:"",number:1,checked: false},
+            {value:"",number:2,checked: false},
+            {value:"",number:3,checked: false},
+            {value:"",number:4,checked: false},
+            {value:"",number:5,checked: false},
+            {value:"",number:6,checked: false},
+            {value:"",number:7,checked: false},
+            {value:"",number:8,checked: false}
         ]);
         setPlayer('O');
         setResult({winner: "none", state: "none"});
     }
+
     //function to alternate players
     const changePlayer = () =>{
         if(player === 'X'){
@@ -89,14 +94,15 @@ const Board = () => {
         }
     }
 
-    // will choose the type of square, if X or O
+    //update board state every time user clicks square
     const squareHandler= (squareIndex) =>{ 
-        // set player value when square is clicked by user(starting game with X)
         setBoard(prevState => {
             const newState = prevState.map((obj, index)=>{
-                if(squareIndex === index && obj.value === ""){
+                //update square values
+                if(squareIndex === index){
                     obj.value = player;
-                    obj.checked = true
+                    obj.number = squareIndex;
+                    obj.checked = true;
                     return obj
                 }else{
                     return obj;
@@ -106,24 +112,25 @@ const Board = () => {
         });
 
     }
+
     return (
         <Wrapper>
-            {result.state !== "none" && <Message winner = {result.winner} result= {result.state} restart={restarGame}/>}
+            {result.state !== "none" && <Message winner = {result.winner} restart={restarGame}/>}
             <div className='board-container'>
                 <div className='column'>
-                    <Square board={board[0]} squareHandler={() => {squareHandler(0)}}/>
-                    <Square board={board[3]} squareHandler={() => {squareHandler(3)}}/>
-                    <Square board={board[6]} squareHandler={() => {squareHandler(6)}}/>
+                    <Square board={board[0]} squareHandler={squareHandler}/>
+                    <Square board={board[3]} squareHandler={squareHandler}/>
+                    <Square board={board[6]} squareHandler={squareHandler}/>
                 </div>
                 <div className='column'>
-                    <Square board={board[1]} squareHandler={() => {squareHandler(1)}}/>
-                    <Square board={board[4]} squareHandler={() => {squareHandler(4)}}/>
-                    <Square board={board[7]} squareHandler={() => {squareHandler(7)}}/>
+                    <Square board={board[1]} squareHandler={squareHandler}/>
+                    <Square board={board[4]} squareHandler={squareHandler}/>
+                    <Square board={board[7]} squareHandler={squareHandler}/>
                 </div>
                 <div className='column'>
-                    <Square board={board[2]} squareHandler={() => {squareHandler(2)}}/>
-                    <Square board={board[5]} squareHandler={() => {squareHandler(5)}}/>
-                    <Square board={board[8]} squareHandler={() => {squareHandler(8)}}/>
+                    <Square board={board[2]} squareHandler={squareHandler}/>
+                    <Square board={board[5]} squareHandler={squareHandler}/>
+                    <Square board={board[8]} squareHandler={squareHandler}/>
                 </div>
 
             </div>
